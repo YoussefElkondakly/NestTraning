@@ -7,4 +7,5 @@ export default class UpdateUserDto {
   @IsString()
   @IsOptional()
   password: string;
+  
 };

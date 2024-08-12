@@ -1,5 +1,5 @@
 import {  IsEmail, IsNotEmpty, IsString } from "class-validator"
-import { PasswordMatch } from "src/decorators/password-match.decorator";
+import { PasswordMatch } from "../decorators/password-match.decorator";
 
 export default class CreateUserDto {
   @IsEmail()

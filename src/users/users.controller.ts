@@ -11,6 +11,7 @@ import {
   Post,
   Query,
   Session,
+  UseFilters,
   UseGuards,
 } from '@nestjs/common';
 import CreateUserDto from 'src/dtos/create-user.dto';
@@ -24,6 +25,7 @@ import SignInUserDto from 'src/dtos/signin-user.dto';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import User from './user.entity';
 import AuthGuard from 'src/guards/auth.guard';
+import { HttpExceptionFilter } from 'src/filters/custom-exception.filter';
 
 @serializeInterceptor(UserDto)
 @Controller('auth')
@@ -46,6 +48,7 @@ export class UsersController {
     return (session.user = null);
   }
   @Post('/signup')
+  // @UseFilters(new HttpExceptionFilter())
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
     const { email, password } = body;
     const user = await this.authService.signUp(email, password);
